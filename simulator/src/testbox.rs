@@ -16,8 +16,6 @@ struct Positioner {
 
 #[derive(Debug)]
 pub(crate) struct PositionerState {
-    pub min: i64,
-    pub max: i64,
     pub value: i64,
 }
 
@@ -30,7 +28,7 @@ impl Positioner {
     }
 
     fn get(&self) -> PositionerState {
-        PositionerState { min: self.min, max: self.max, value: self.value }
+        PositionerState { value: self.value }
     }
 
     fn set(&mut self, new_value: i64) -> PositionerState {

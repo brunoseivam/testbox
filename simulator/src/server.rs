@@ -39,7 +39,6 @@ pub(crate) async fn server<const LEN: usize>(
                         false
                     }
                     n => {
-                        info!("Got {} bytes", n);
                         incoming.send(Some(buffer[..n].to_vec())).await?;
                         true
                     },

@@ -1,6 +1,5 @@
-use std::{error::Error, fmt, sync::{Arc, Mutex}};
+use std::{error::Error, fmt, sync::Mutex};
 
-use log::debug;
 use status_line::StatusLine;
 use tokio::sync::mpsc;
 
@@ -12,10 +11,10 @@ impl fmt::Display for Status {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let tb = self.0.lock().expect("Failed to acquire lock");
         write!(
-            f, "LED[RED: {:4}   YLW: {:4}   GRN: {:4}]  Servo: {:3}  Sensor[TEMP: {:2.2}  HUM: {:2.2}]  SelfTest[ACTV:{:5} PRG:{:3}%]",
+            f, "RED: {:4}   YLW: {:4}   GRN: {:4}  Servo: {:3}  TEMP: {:2.2}  HUM: {:2.2}  SlfTst:{:3}%",
             tb.red_led.value, tb.yellow_led.value, tb.green_led.value,
             tb.servo.value, tb.sensor.temperature, tb.sensor.humidity,
-            tb.self_test.active, tb.self_test.progress
+            tb.self_test.progress
 
         )
     }
