@@ -293,7 +293,7 @@ public:
     };
     
     char *pch;
-    pch = strtok(buffer_, " \n");
+    pch = strtok(buffer_, " \r\n");
 
     // Parse VERB
     if (pch == NULL) {
