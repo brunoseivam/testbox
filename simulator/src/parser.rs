@@ -130,7 +130,7 @@ impl From<Response> for Vec<u8> {
             Response::Id(id) => format!("OK {}\r\n", id),
             Response::Value(v) => format!("OK {}\r\n", v),
             Response::TempAndHum(s, t, h) => format!("OK {} {:.2} {:.2}\r\n", s, t, h),
-            Response::SelfTest(a, p) => format!("OK {} {}\r\n", if a {1} else {0}, p),
+            Response::SelfTest(a, p) => format!("OK {} {}\r\n", if a {"ACTIVE"} else {"INACTIVE"}, p),
             Response::Error(e) => {
                 let e: &'static str = e.into();
                 format!("ERR {}\r\n", e)
